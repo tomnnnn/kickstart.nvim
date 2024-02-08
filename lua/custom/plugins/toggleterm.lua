@@ -13,6 +13,7 @@ return {
           end
         end,
         open_mapping = [[<c-\>]],
+        direction = "vertical"
       }
 
     -- lazygit
@@ -26,6 +27,8 @@ return {
       vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true, desc = "Toggle lazygit window"})
 
     -- additional keymaps
-      vim.keymap.set('n', '<leader>kth', ':ToggleTerm size=40 <CR>')
+      vim.keymap.set('n', '<leader>th', ':ToggleTerm direction=horizontal <CR>', {noremap = true, silent = true, desc = "Set toggleterm direction to horizontal"})
+      vim.keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical <CR>', {noremap = true, silent = true, desc = "Set toggleterm direction to vertical"})
+      vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float <CR>', {noremap = true, silent = true, desc = "Set toggleterm direction to float"})
     end,
 }
