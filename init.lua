@@ -160,7 +160,19 @@ require('lazy').setup({
     },
   },
 
-  'sainnhe/gruvbox-material',
+  -- colorschemes
+  --[[ {
+    "folke/tokyonight.nvim",
+    config = function()
+      vim.cmd("colorscheme tokyonight")
+    end
+  }, ]]
+  {
+    "RRethy/nvim-base16",
+    config = function()
+      vim.cmd("colorscheme base16-gruvbox-material-dark-medium")
+    end
+  },
 
   {
     -- Set lualine as statusline
@@ -236,9 +248,6 @@ require('lazy').setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
-
--- set colorscheme
-vim.cmd [[colorscheme gruvbox-material]]
 
 -- Set highlight on search
 vim.o.hlsearch = false
