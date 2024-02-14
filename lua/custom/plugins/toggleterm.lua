@@ -1,5 +1,5 @@
 return {
-    'akinsho/toggleterm.nvim',
+   'akinsho/toggleterm.nvim',
     version = "*",
     opts = {},
     config = function()
@@ -12,7 +12,6 @@ return {
             return vim.o.columns * 0.4
           end
         end,
-        open_mapping = [[<c-\>]],
         direction = "vertical"
       }
 
@@ -30,5 +29,6 @@ return {
       vim.keymap.set('n', '<leader>th', ':ToggleTerm direction=horizontal <CR>', {noremap = true, silent = true, desc = "Set toggleterm direction to horizontal"})
       vim.keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical <CR>', {noremap = true, silent = true, desc = "Set toggleterm direction to vertical"})
       vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float <CR>', {noremap = true, silent = true, desc = "Set toggleterm direction to float"})
+      vim.keymap.set('n', '<leader>tt', ':ToggleTerm <CR>', {noremap = true, silent = true, desc = "Toggleterm"})
     end,
 }
