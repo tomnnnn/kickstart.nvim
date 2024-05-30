@@ -186,10 +186,10 @@ require('lazy').setup({
       vim.g.gruvbox_material_diagnostic_text_highlight = 1
       vim.g.gruvbox_material_inlay_hints_background = 'dimmed'
       vim.g.gruvbox_material_diagnostic_line_highlight = 1
-      vim.cmd.colorscheme 'gruvbox-material'
+
+      vim.cmd.colorscheme("gruvbox-material")
     end,
   },
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -435,7 +435,8 @@ vim.defer_fn(function()
     -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
     modules = {},
     highlight = { enable = true },
-    indent = { enable = true },
+    -- Disabled TSitter indent because it collided with other plugins (I guess?)
+    indent = { enable = false },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -566,9 +567,7 @@ require('mason-lspconfig').setup()
 -- add new to install it
 local servers = {
   clangd = {
-    settings = {
-      ['line-length'] = 120,
-    },
+      ['--line-length'] = 120,
   },
   pyright = {},
   phpactor = {},
@@ -578,7 +577,7 @@ local servers = {
       telemetry = { enable = false },
       -- disable noisy missing-field warnings
       diagnostics = { disable = { 'missing-fields' } },
-      ['line-length'] = 120,
+      ['--line-length'] = 120,
     },
   },
 }
