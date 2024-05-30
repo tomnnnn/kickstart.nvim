@@ -4,7 +4,7 @@ return {
     config = function()
         vim.api.nvim_set_keymap(
           "n",
-          "<space>fb",
+          "<space>f",
           ":Telescope file_browser<CR>",
           { noremap = true }
         )
