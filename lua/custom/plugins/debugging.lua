@@ -67,8 +67,8 @@ local dap_plugin = {
     local dap = require("dap")
 
     vim.keymap.set('n', '<Leader>db', dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
-    vim.keymap.set('n', '<Leader>dr', function() run_dap_with_config() end, { desc = "Run debugger" })
     vim.keymap.set('n', '<Leader>dc', dap.clear_breakpoints, { desc = "Clear breakpoints" })
+    vim.keymap.set('n', '<Leader>dr', dap.continue, { desc = "Run debugger" })
     vim.keymap.set('n', '<F8>', dap.continue)
     vim.keymap.set('n', '<F9>', dap.step_over)
     vim.keymap.set('n', '<F10>', dap.step_into)
@@ -80,15 +80,44 @@ local dap_plugin = {
       args = { os.getenv("HOME") .. "/vscode-php-debug/out/phpDebug.js" }
     }
 
-    dap.configurations.php = {
-        {
+    dap.configurations = {
+      {
+        php = {
             type = "php",
             request = "launch",
             name = "Listen for Xdebug",
             port = 9003
-        }
+        },
     }
+  }
   end,
+}
+
+local cfg = {
+   configurations = {
+      -- C lang configurations
+      cpp = {
+         {
+            name = "Crazyyyy debugger",
+            type = "lldb",
+            request = "launch",
+            cwd = "..",
+            program = "../imapcl"
+         },
+      },
+   },
+}
+
+local dap_lldb = {
+   "julianolf/nvim-dap-lldb",
+   config = function()
+      local dap_lldb = require("dap-lldb")
+      local mason_registry = require("mason-registry")
+      local codelldb = mason_registry.get_package("codelldb")
+      dap_lldb.opts = { codelldb_path = codelldb:get_install_path()}
+      require("dap-lldb").setup(cfg)
+   end,
+   dependencies = { "mfussenegger/nvim-dap" },
 }
 
 local dap_ui = {
@@ -122,5 +151,6 @@ local dap_ui = {
 return {
   mason_dap,
   dap_plugin,
-  dap_ui
+  dap_ui,
+  dap_lldb
 }
