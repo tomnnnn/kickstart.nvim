@@ -42,21 +42,6 @@ local dap_plugin = {
   end,
 }
 
-local cfg = {
-   configurations = {
-      -- C lang configurations
-      cpp = {
-         {
-            name = "Crazyyyy debugger",
-            type = "lldb",
-            request = "launch",
-            cwd = "..",
-            program = "../imapcl"
-         },
-      },
-   },
-}
-
 local dap_lldb = {
    "julianolf/nvim-dap-lldb",
    config = function()
@@ -64,7 +49,6 @@ local dap_lldb = {
       local mason_registry = require("mason-registry")
       local codelldb = mason_registry.get_package("codelldb")
       dap_lldb.opts = { codelldb_path = codelldb:get_install_path()}
-      require("dap-lldb").setup(cfg)
    end,
    dependencies = { "mfussenegger/nvim-dap" },
 }
