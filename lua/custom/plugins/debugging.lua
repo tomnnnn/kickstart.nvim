@@ -48,7 +48,7 @@ local dap_lldb = {
       local dap_lldb = require("dap-lldb")
       local mason_registry = require("mason-registry")
       local codelldb = mason_registry.get_package("codelldb")
-      dap_lldb.opts = { codelldb_path = codelldb:get_install_path()}
+      dap_lldb.setup()
    end,
    dependencies = { "mfussenegger/nvim-dap" },
 }
